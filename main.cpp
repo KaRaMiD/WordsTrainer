@@ -14,7 +14,6 @@ int main()
     {
         WordsTrainer::WordsTrainerGame w;
         w.Run();
-        system("pause");
     }
     catch (const std::exception& e)
     {
