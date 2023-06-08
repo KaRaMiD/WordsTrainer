@@ -17,6 +17,8 @@ namespace WordsTrainer
     size_t WordsTrainerGame::wrongAnswers = 0;
     size_t WordsTrainerGame::countOfFinishedCycles = 0;
 
+    HANDLE ConsoleHandler::console = GetStdHandle(STD_OUTPUT_HANDLE);
+
     WordsTrainerGame::WordsTrainerGame(const std::string_view& wordsFileName)
     {
         m_WordsManager = std::make_unique<WordsManager>(wordsFileName);
@@ -30,6 +32,7 @@ namespace WordsTrainer
         bool canChangeSettings = false;
 
         auto wordsToStudy = std::make_unique<WordsManager>(*m_WordsManager);
+        size_t totalAnsweredWordsCount{};
 
         const auto KeyBoardManagement = [&]()
         {
@@ -47,38 +50,50 @@ namespace WordsTrainer
                     if (ConsoleHandler::OnKeyComb(wKey))
                     {
                         isTranslationChanged = !isTranslationChanged;
-                        std::cout << std::endl << "ChangedTranslation = " << (isTranslationChanged ? "true" : "false") << std::endl;
+                        std::cout << '\n' << "ChangedTranslation = " << (isTranslationChanged ? "true" : "false") << '\n';
                     }
                     else if (ConsoleHandler::OnKeyComb(eKey))
                     {
                         isStudyMode = !isStudyMode;
-                        std::cout << std::endl << "StudyMode = " << (isStudyMode ? "true" : "false") << std::endl;
+                        std::cout << '\n' << "StudyMode = " << (isStudyMode ? "true" : "false") << '\n';
                     }
                 }
             }
         };
         const auto GameMain = [&]()
         {
-            std::cout << "Wellcome to WordsTrainer Game!" << std::endl;
+            std::cout << "Wellcome to WordsTrainer Game!" << '\n' << '\n';
+            std::cout << "Stats:" << '\n';
+            m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightMagenta);
+            std::cout << "Total number of words - " << m_WordsManager->GetVocabulary().size() << '\n';
+            std::cout << "You have already answered on " << totalAnsweredWordsCount <<" words" << '\n';
 
             if (rightAnswers > 0 || wrongAnswers > 0)
             {
-                std::cout << "Right answers " << rightAnswers << ", wrong answers " << wrongAnswers << std::endl;
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightGreen);
+                std::cout << "Right answers " << rightAnswers;
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
+                std::cout << ", ";
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightRed);
+                std::cout << "wrong answers " << wrongAnswers << '\n';
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightMagenta);
             }
             if (countOfFinishedCycles > 0)
-                std::cout << "Count of fully finished cycles is " << countOfFinishedCycles << std::endl << std::endl;
+                std::cout << "Count of fully finished cycles is " << countOfFinishedCycles << '\n';
+            m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
+            std::cout << '\n';
 
-            std::cout << "Controlls:" << std::endl;
-            std::cout << "Left Ctrl + Q - exit the game" << std::endl;
-            std::cout << "Left Ctrl + W - change translation" << std::endl;
-            std::cout << "Left Ctrl + E - change study mode" << std::endl;
-            std::cout << std::endl;
-            std::cout << "Mods settings:" << std::endl;
-            std::cout << "ChangedTranslation = " << (isTranslationChanged ? "true" : "false") << std::endl;
-            std::cout << "StudyMode = " << (isStudyMode ? "true" : "false") << std::endl;
-            std::cout << std::endl;
-            std::cout << "Enter the translation of the word:" << std::endl;
-            std::cout << std::endl;
+            std::cout << "Controlls:" << '\n';
+            std::cout << "Left Ctrl + Q - exit the game" << '\n';
+            std::cout << "Left Ctrl + W - change translation" << '\n';
+            std::cout << "Left Ctrl + E - change study mode" << '\n';
+            std::cout << '\n';
+            std::cout << "Mods settings:" << '\n';
+            std::cout << "ChangedTranslation = " << (isTranslationChanged ? "true" : "false") << '\n';
+            std::cout << "StudyMode = " << (isStudyMode ? "true" : "false") << '\n';
+            std::cout << '\n';
+            std::cout << "Enter the translation of the word:" << '\n';
+            std::cout << '\n';
 
             if (wordsToStudy->GetVocabulary().size() == 0)
             {
@@ -99,8 +114,7 @@ namespace WordsTrainer
 
             if (word.size() == 0 || translation.size() == 0)
             {
-                std::cerr << "word.size() == 0 || translation.size() == 0";
-                    throw std::runtime_error("word.size() == 0 || translation.size() == 0");
+                throw std::runtime_error("word.size() == 0 || translation.size() == 0");
             }
 
             const auto wToPrint = !isTranslationChanged ? word : translation;
@@ -112,11 +126,13 @@ namespace WordsTrainer
             Word_ entered;
 
             std::uniform_int_distribution<size_t> wDist(0, wToPrint.size() - 1);//word dist
+            m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightCyan);
             std::cout << wToPrint[wDist(gen)] << " - ";
+            m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
             //std::cin >> entered;
+            m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightYellow);
             std::getline(std::cin, entered);
-
-            std::cout << "Now you can change some settings or exit the game using the key combination above" << std::endl;
+            m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
 
             //std::thread keyboardInput(KeyBoardManagement);//why does it invokes before the 88s line?
             canChangeSettings = true;
@@ -142,18 +158,24 @@ namespace WordsTrainer
 
             if (isCorrect)
             {
-                std::cout << "Right!" << std::endl;
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightGreen);
+                std::cout << "Right!" << '\n';
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
                 rightAnswers++;
             }
             else
             {
-                std::cout << "Wrong!" << std::endl;
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightRed);
+                std::cout << "Wrong!" << '\n';
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
                 wrongAnswers++;
             }
             if (!isCorrect || ((right.size() > 1 || wToPrint.size() > 1) && isCorrect))
             {
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::Cyan);
                 PrintWordsAndTranslation(word, translation);
-                std::cout << std::endl;
+                m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
+                std::cout << '\n';
             }
             if (isStudyMode)
             {
@@ -161,11 +183,15 @@ namespace WordsTrainer
                 std::cin.get();
             }
 
+            std::cout << "Now you can change some settings or exit the game using the key combination above" << '\n';
+
             std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');//<-- this ignore all chars except of '\n'
             //std::cin.get();
 
             canChangeSettings = false;
             //keyboardInput.detach();
+
+            totalAnsweredWordsCount++;
 
             system("cls");
         };
@@ -180,9 +206,15 @@ namespace WordsTrainer
         keyboardInput.detach();
 
         system("cls");
-        std::cout << "You have just exited WordsTrainer Game!" << std::endl;
-        std::cout << "Statistics:" << std::endl;
-        std::cout << "Total right answers are " << rightAnswers << ", wrong are " << wrongAnswers << std::endl;
+        std::cout << "You have just exited WordsTrainer Game!" << '\n';
+        std::cout << "Statistics:" << '\n';
+        m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightGreen);
+        std::cout << "Total right answers are " << rightAnswers;
+        m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
+        std::cout << ", ";
+        m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightRed);
+        std::cout << "wrong are " << wrongAnswers << '\n';
+        m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
     }
     bool ConsoleHandler::OnKeyPressed(const key& keyCode)
     {
