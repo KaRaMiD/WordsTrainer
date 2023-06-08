@@ -1,7 +1,7 @@
 #include "WordsManager.hpp"
 
 #include "WordsHandler.hpp"
-
+#include <iostream>
 namespace WordsTrainer
 {
     WordsManager::WordsManager(const std::string_view& wordsFileName)
@@ -9,6 +9,8 @@ namespace WordsTrainer
         const auto rwords = WordsHandler::GetRawWordsFromTheFile(wordsFileName);
 
         const auto count = std::count(rwords.begin(), rwords.end(), newLineSymbol);
+
+        m_Vocabulary.reserve(count);
 
         for (size_t i = 0; i < count; i++)
         {
