@@ -1,12 +1,19 @@
-#pragma once
+//#pragma once
+//
+//#include "Word.hpp"
+//
+//#include <string>
+//#include <type_traits>
+//#include <vector>
+export module WordsTrainer.WordsContainer;
 
-#include "Word.hpp"
+import WordsTrainer.Types;
 
-#include <string>
-#include <type_traits>
-#include <vector>
+import <string>;
+import <type_traits>;
+import <vector>;
 
-namespace WordsTrainer
+export namespace WordsTrainer
 {
     //W - word
     //TW - translated word

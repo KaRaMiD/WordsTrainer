@@ -1,11 +1,18 @@
-#pragma once
+//#pragma once
+//
+//#include <string>
+//
+//#include "Word.hpp"
+//#include "WordsContainer.hpp"
+export module WordsTrainer.WordsHandler;
 
-#include <string>
+import <string>;
+import <string_view>;
 
-#include "Word.hpp"
-#include "WordsContainer.hpp"
+import WordsTrainer.Types;
+import WordsTrainer.WordsContainer;
 
-namespace WordsTrainer
+export namespace WordsTrainer
 {
     class WordsHandler
     {

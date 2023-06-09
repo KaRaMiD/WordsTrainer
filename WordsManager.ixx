@@ -1,10 +1,16 @@
-#pragma once
+//#pragma once
 
-#include "WordsContainer.hpp"
+//#include "WordsContainer.hpp"
+export module WordsTrainer.WordsManager;
 
-namespace WordsTrainer
+import WordsTrainer.Types;
+import WordsTrainer.WordsContainer;
+
+import <string_view>;
+
+export namespace WordsTrainer
 {
-    static constinit const char* const wordsFileName = "words.txt";
+    inline constinit const char* const wordsFileName = "words.txt";
 
     class WordsManager
     {

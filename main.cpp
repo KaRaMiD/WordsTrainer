@@ -1,11 +1,16 @@
-#include <iostream>
-#include <windows.h>
+//#include <iostream>
+//#include <windows.h>
 //#include <memory>
 //#include <fstream>
 
-#include "WordsTrainer.hpp"
+//#include "WordsTrainer.hpp"
 
 //#define DEBUG
+
+import <iostream>;
+import <windows.h>;
+
+import WordsTrainer;
 
 int main()
 {

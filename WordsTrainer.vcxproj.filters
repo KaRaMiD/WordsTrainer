@@ -23,22 +23,20 @@
     <ClCompile Include="WordsTrainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="WordsManager.hpp">
+    <ClCompile Include="Word.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WordsContainer.hpp">
+    </ClCompile>
+    <ClCompile Include="WordsManager.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WordsHandler.hpp">
+    </ClCompile>
+    <ClCompile Include="WordsContainer.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Word.hpp">
+    </ClCompile>
+    <ClCompile Include="WordsTrainer.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WordsTrainer.hpp">
+    </ClCompile>
+    <ClCompile Include="WordsHandler.ixx">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +121,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,17 +131,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="WordsContainer.ixx" />
     <ClCompile Include="WordsHandler.cpp" />
+    <ClCompile Include="WordsHandler.ixx" />
     <ClCompile Include="WordsManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="WordsTrainer.cpp" />
+    <ClCompile Include="WordsTrainer.ixx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Word.hpp" />
-    <ClInclude Include="WordsContainer.hpp" />
-    <ClInclude Include="WordsHandler.hpp" />
-    <ClInclude Include="WordsManager.hpp" />
-    <ClInclude Include="WordsTrainer.hpp" />
+    <ClCompile Include="Word.ixx" />
+    <ClCompile Include="WordsManager.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

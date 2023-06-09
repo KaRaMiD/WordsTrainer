@@ -1,7 +1,13 @@
-#include "WordsManager.hpp"
+//#include "WordsManager.hpp"
+//
+//#include "WordsHandler.hpp"
+import <iostream>;
+module WordsTrainer.WordsManager;
 
-#include "WordsHandler.hpp"
-#include <iostream>
+import WordsTrainer.WordsHandler;
+
+//import <iostream>;
+
 namespace WordsTrainer
 {
     WordsManager::WordsManager(const std::string_view& wordsFileName)

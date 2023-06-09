@@ -1,10 +1,15 @@
-#pragma once
+//#pragma once
+//
+//#include <string>
+//#include <vector>
+//#include <type_traits>
+export module WordsTrainer.Types;
 
-#include <string>
-#include <vector>
-#include <type_traits>
+import <string>;
+import <vector>;
+import <type_traits>;
 
-namespace WordsTrainer
+export namespace WordsTrainer
 {
     using Word_ = std::string;
     using Synonym = std::vector<Word_>;

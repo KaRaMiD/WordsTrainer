@@ -1,14 +1,25 @@
-#include "WordsHandler.hpp"
+//#include "WordsHandler.hpp"
 
-#include <type_traits>
-#include <string_view>
-#include <string>
-#include <cctype>
-#include <vector>
-#include <map>
-#include <fstream>
-#include <sstream>
-#include <algorithm>
+import <type_traits>;
+import <string_view>;
+import <string>;
+import <cctype>;
+import <vector>;
+import <map>;
+import <fstream>;
+import <sstream>;
+import <algorithm>;
+module WordsTrainer.WordsHandler;
+
+//import <type_traits>;
+//import <string_view>;
+//import <string>;
+//import <cctype>;
+//import <vector>;
+//import <map>;
+//import <fstream>;
+//import <sstream>;
+//import <algorithm>;
 
 namespace WordsTrainer
 {

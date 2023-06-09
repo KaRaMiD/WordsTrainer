@@ -1,12 +1,20 @@
-#pragma once
+//#pragma once
+//
+//#include "WordsManager.hpp"
+//
+//#include <memory>
+//#include <windows.h>
+module;
+export module WordsTrainer;
 
-#include "WordsManager.hpp"
+import WordsTrainer.WordsManager;
 
-#include <memory>
-#include <windows.h>
+import <memory>;
+import <windows.h>;
+import <string_view>;
 
 //TODO: WordsTrainerGame, ConsoleHandler(colors)
-namespace WordsTrainer
+export namespace WordsTrainer
 {
     namespace ConsoleAttributes
     {
@@ -49,7 +57,7 @@ concept ConsoleColorAttributes = (std::is_enum_v<Attributes> && ...)
 && ((std::is_same_v<Attributes, WordsTrainer::ConsoleAttributes::ConsoleTextColor> || ...)
     || (std::is_same_v<Attributes, WordsTrainer::ConsoleAttributes::ConsoleBackgroundColor> || ...));
 
-namespace WordsTrainer
+export namespace WordsTrainer
 {
     class ConsoleHandler
     {

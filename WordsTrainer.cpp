@@ -1,11 +1,20 @@
-#include "WordsTrainer.hpp"
+//#include "WordsTrainer.hpp"
+//
+import <windows.h>;
+import <iostream>;
+import <thread>;
+import <random>;
+import <algorithm>;
+import <cstdlib>;
+import <map>;
+module WordsTrainer;
 
-#include <iostream>
-#include <thread>
-#include <random>
-#include <algorithm>
-#include <cstdlib>
-#include <map>
+//import <iostream>;
+//import <thread>;
+//import <random>;
+//import <algorithm>;
+//import <cstdlib>;
+//import <map>;
 
 namespace WordsTrainer
 {
