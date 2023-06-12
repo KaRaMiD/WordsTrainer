@@ -173,7 +173,7 @@ namespace WordsTrainer
                 rightAnswers++;
             }
             else
-            {
+            {//TODO: ADD READING "^E", etc
                 m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::BrightRed);
                 std::cout << "Wrong!" << '\n';
                 m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
@@ -186,13 +186,12 @@ namespace WordsTrainer
                 m_ConsoleHandler.SetConsoleColorAttributes(ConsoleAttributes::ConsoleTextColor::White);
                 std::cout << '\n';
             }
+            std::cout << "Now you can change some settings or exit the game using the key combination above" << '\n';
             if (isStudyMode)
             {
                 std::cout << "Enter the word one more time: ";
                 std::cin.get();
             }
-
-            std::cout << "Now you can change some settings or exit the game using the key combination above" << '\n';
 
             std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');//<-- this ignore all chars except of '\n'
             //std::cin.get();
