@@ -50,21 +50,24 @@ namespace WordsTrainer
             constexpr const int eKey = 0x45;
             while (isGameRunning)
             {
-                if (ConsoleHandler::OnKeyComb(qKey))
+                if(GetForegroundWindow() == GetConsoleWindow())
                 {
-                    isGameRunning = !isGameRunning;
-                }
-                if(canChangeSettings)
-                {
-                    if (ConsoleHandler::OnKeyComb(wKey))
+                    if (ConsoleHandler::OnKeyComb(qKey))
                     {
-                        isTranslationChanged = !isTranslationChanged;
-                        std::cout << '\n' << "ChangedTranslation = " << (isTranslationChanged ? "true" : "false") << '\n';
+                        isGameRunning = !isGameRunning;
                     }
-                    else if (ConsoleHandler::OnKeyComb(eKey))
+                    if(canChangeSettings)
                     {
-                        isStudyMode = !isStudyMode;
-                        std::cout << '\n' << "StudyMode = " << (isStudyMode ? "true" : "false") << '\n';
+                        if (ConsoleHandler::OnKeyComb(wKey))
+                        {
+                            isTranslationChanged = !isTranslationChanged;
+                            std::cout << '\n' << "ChangedTranslation = " << (isTranslationChanged ? "true" : "false") << '\n';
+                        }
+                        else if (ConsoleHandler::OnKeyComb(eKey))
+                        {
+                            isStudyMode = !isStudyMode;
+                            std::cout << '\n' << "StudyMode = " << (isStudyMode ? "true" : "false") << '\n';
+                        }
                     }
                 }
             }

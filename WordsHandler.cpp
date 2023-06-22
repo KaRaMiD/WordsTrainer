@@ -173,6 +173,6 @@ namespace WordsTrainer
             return ist.str();
         }
         else
-            throw std::runtime_error("GetFileSource: error");
+            throw std::runtime_error("GetFileSource: cannot find words source file");
     }
 }
